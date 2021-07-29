@@ -24,7 +24,7 @@ public class Player  {
     public void attack(){
         for(Die die : den){
             die.roll();
-            System.out.println("Attack Strength: " + die.faceUpValue);
+            System.out.println("Wizard " + name + " Attack Strength: " + die.faceUpValue);
         }
     }
 }
