@@ -98,22 +98,27 @@ public class Main {
                                         System.out.println(myCup.player.name + "'s monster attacked " + myCup.player2.name + " directly!!!");
                                         myCup.player2.health--;
                                         tempNum = 0;
+//                                        m = myCup.player.den.size();
                                     }
-                                    for (int n = 0; n < tempNum; n++){
+                                    for (int n = 0; n < myCup.player2.den.size(); n++){
                                         if (myCup.player.den.get(n).faceUpValue > myCup.player2.den.get(n).faceUpValue) {
                                             System.out.println(myCup.player.name + "'s Attack was stronger, " + myCup.player2.name + "'s monster was killed.");
                                             myCup.player2.den.remove(n);
+//                                            break;
                                         } else if (myCup.player.den.get(n).faceUpValue < myCup.player2.den.get(n).faceUpValue){
                                             System.out.println(myCup.player2.name + "'s Monster defended and killed " + myCup.player.name + "'s Monster");
                                             myCup.player.den.remove(n);
+//                                            break;
                                         } else {
                                             System.out.println("Monsters attacks had equal strength");
+//                                            break;
                                         }
                                     }
                                     while(tempNum > 0) {
                                         System.out.println(myCup.player.name + "'s monster attacked " + myCup.player2.name + " directly!!!");
                                         myCup.player2.health--;
                                         tempNum--;
+                                        m = myCup.player.den.size();
                                     }
                                 }
 
@@ -208,22 +213,27 @@ public class Main {
                                         System.out.println(myCup.player2.name + "'s monster attacked " + myCup.player.name + " directly!!!");
                                         myCup.player.health--;
                                         tempNum = 0;
+//                                        m = myCup.player.den.size();
                                     }
-                                    for (int n = 0; n < tempNum; n++){
+                                    for (int n = 0; n < myCup.player.den.size(); n++){
                                         if (myCup.player2.den.get(n).faceUpValue > myCup.player.den.get(n).faceUpValue) {
                                             System.out.println(myCup.player2.name + "'s Attack was stronger, " + myCup.player.name + "'s monster was killed.");
                                             myCup.player.den.remove(n);
+//                                            break;
                                         } else if (myCup.player2.den.get(n).faceUpValue < myCup.player.den.get(n).faceUpValue){
                                             System.out.println(myCup.player.name + "'s Monster defended and killed " + myCup.player2.name + "'s Monster");
                                             myCup.player2.den.remove(n);
+//                                            break;
                                         } else {
                                             System.out.println("Monsters attacks had equal strength");
+//                                            break;
                                         }
                                     }
                                     while(tempNum > 0) {
                                         System.out.println(myCup.player2.name + "'s monster attacked " + myCup.player.name + " directly!!!");
                                         myCup.player.health--;
                                         tempNum--;
+                                        m = myCup.player.den.size();
                                     }
                                 }
 
