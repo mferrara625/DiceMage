@@ -44,11 +44,11 @@ public class Main {
                         System.out.println("(1) to view field");
                         if (myCup.player.den.size() > 0 && !hasAttacked)
                             System.out.println("(2) to attack");
-                        if (myCup.player.mana >= 4) {
-                            if (myCup.player.mana >= 6) {
-                                System.out.println("(3) to summon a monster (and end turn)");
-                            }
-                            System.out.println("(4) to increase power");
+                        if (myCup.player.mana >= 6) {
+                            System.out.println("(3) to summon a monster (and end turn)");
+                        }
+                        if (myCup.player.mana >= (myCup.player.powerLevel - 2)) {
+                            System.out.println("(4) to increase power for " + (myCup.player.powerLevel - 2) + " mana");
                         }
                         System.out.println("(5) to end turn");
                         input2 = scan.nextInt();
@@ -60,7 +60,7 @@ public class Main {
                             System.out.println("Power Up");
                             myCup.dice.add(new Die());
                             myCup.player.powerLevel++;
-                            myCup.player.mana -= 4;
+                            myCup.player.mana -= (myCup.player.powerLevel - 3);
                             continue;
                         } else if (input2 == 3) {
                             if (myCup.player.mana < 13)
@@ -160,11 +160,11 @@ public class Main {
                         System.out.println("(1) to view field");
                         if (myCup.player2.den.size() > 0 && !hasAttacked)
                             System.out.println("(2) to attack");
-                        if (myCup.player2.mana >= 4) {
-                            if (myCup.player2.mana >= 6) {
-                                System.out.println("(3) to summon a monster (and end turn)");
-                            }
-                            System.out.println("(4) to increase power");
+                        if (myCup.player2.mana >= 6) {
+                            System.out.println("(3) to summon a monster (and end turn)");
+                        }
+                        if (myCup.player2.mana >= (myCup.player2.powerLevel - 2)) {
+                            System.out.println("(4) to increase power for " + (myCup.player2.powerLevel - 2) + " mana");
                         }
                         System.out.println("(5) to end turn");
                         input2 = scan.nextInt();
@@ -176,7 +176,7 @@ public class Main {
                             System.out.println("Power Up");
                             myCup.dice2.add(new Die());
                             myCup.player2.powerLevel++;
-                            myCup.player2.mana -= 4;
+                            myCup.player2.mana -= (myCup.player2.powerLevel - 3);
                             continue;
                         } else if (input2 == 3) {
                             if (myCup.player2.mana < 13)
