@@ -50,6 +50,8 @@ public class Main {
                             hasAttacked = combat(game, game.player, game.player2);
                         } else if (input2 == 1) {
                             displayField(game);
+                        } else if (input2 == 6) {
+                            healCondition(game.dice, game.player);
                         } else {
                             break;
                         }
@@ -82,6 +84,8 @@ public class Main {
                             hasAttacked = combat(game, game.player2, game.player);
                         } else if (input2 == 1) {
                             displayField(game);
+                        } else if (input2 == 6) {
+                            healCondition(game.dice2, game.player2);
                         } else {
                             break;
                         }
@@ -89,6 +93,20 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static void healCondition(List<Die> dice, Player player) {
+        if (dice.size() > 0)
+            heal(player, dice);
+        else
+            System.out.println(player.name + " has no mana dice");
+    }
+
+    private static void heal(Player player, List<Die> dice) {
+        int healAmt = (int) ((Math.random() * 3) + 1);
+        player.health += healAmt;
+        dice.remove((dice.size() - 1));
+        System.out.println(player.name + " restored " + healAmt + " health");
     }
 
     private static boolean combat(Game game, Player player, Player player2) {
@@ -189,5 +207,7 @@ public class Main {
             System.out.println("(4) to increase power for " + (player.powerLevel - 2) + " mana");
         }
         System.out.println("(5) to end turn");
+        if (player.health < 3)
+            System.out.println("(6) to heal (costs 1 mana die)");
     }
 }
