@@ -12,11 +12,8 @@ public class Die {
         this.numberOfSides = numberOfSides;
     }
 
-
     public void roll() {
         faceUpValue = (int) ((Math.random() * numberOfSides) + 1);
     }
-
-
 
 }

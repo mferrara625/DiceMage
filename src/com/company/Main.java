@@ -1,11 +1,11 @@
 package com.company;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
         Scanner scan = new Scanner(System.in);
         Game game = new Game(6);
         game.players.add(game.player);
@@ -41,41 +41,13 @@ public class Main {
                         input2 = scan.nextInt();
                         if (input2 == 5) {
                             input2 = 0;
-                            j = 0;
                             break;
                         } else if (input2 == 4) {
-                            System.out.println("Power Up");
-                            game.dice.add(new Die());
-                            game.player.powerLevel++;
-                            game.player.mana -= (game.player.powerLevel - 3);
+                            powerUp (game.dice, game.player);
                         } else if (input2 == 3) {
                             if (addMonster(scan, game.player)) break;
-
                         } else if (input2 == 2) {
-                            game.player.attack();
-                            game.player2.attack();
-                            hasAttacked = true;
-                            game.player.den.stream().sorted();
-                            game.player2.den.stream().sorted();
-                            for (int m = 0; m < game.player.den.size(); m++) {
-                                if(game.player.den.size() == game.player2.den.size()){
-                                    monstersAttack(m, game.player, game.player2);
-                                } else if (game.player.den.size() > game.player2.den.size()){
-                                    int tempNum = (game.player.den.size() - game.player2.den.size());
-                                    if(game.player2.den.size() == 0){
-                                        System.out.println(game.player.name + "'s monster attacked " + game.player2.name + " directly!!!");
-                                        game.player2.health--;
-                                        tempNum = 0;
-                                    }
-                                    moreMonstersAttack(game.player2, game.player);
-                                    while(tempNum > 0) {
-                                        System.out.println(game.player.name + "'s monster attacked " + game.player2.name + " directly!!!");
-                                        game.player2.health--;
-                                        tempNum--;
-                                        m = game.player.den.size();
-                                    }
-                                }
-                            }
+                            hasAttacked = combat(game, game.player, game.player2);
                         } else if (input2 == 1) {
                             displayField(game);
                         } else {
@@ -101,40 +73,13 @@ public class Main {
                         input2 = scan.nextInt();
                         if (input2 == 5) {
                             input2 = 0;
-                            i = 0;
                             break;
                         } else if (input2 == 4) {
-                            System.out.println("Power Up");
-                            game.dice2.add(new Die());
-                            game.player2.powerLevel++;
-                            game.player2.mana -= (game.player2.powerLevel - 3);
+                            powerUp(game.dice2, game.player2);
                         } else if (input2 == 3) {
                             if (addMonster(scan, game.player2)) break;
                         } else if (input2 == 2) {
-                            game.player2.attack();
-                            game.player.attack();
-                            hasAttacked = true;
-                            game.player2.den.stream().sorted();
-                            game.player.den.stream().sorted();
-                            for (int m = 0; m < game.player2.den.size(); m++) {
-                                if(game.player2.den.size() == game.player.den.size()){
-                                    monstersAttack(m, game.player2, game.player);
-                                } else if (game.player2.den.size() > game.player.den.size()){
-                                    int tempNum = (game.player2.den.size() - game.player.den.size());
-                                    if(game.player.den.size() == 0){
-                                        System.out.println(game.player2.name + "'s monster attacked " + game.player.name + " directly!!!");
-                                        game.player.health--;
-                                        tempNum = 0;
-                                    }
-                                    moreMonstersAttack(game.player, game.player2);
-                                    while(tempNum > 0) {
-                                        System.out.println(game.player2.name + "'s monster attacked " + game.player.name + " directly!!!");
-                                        game.player.health--;
-                                        tempNum--;
-                                        m = game.player.den.size();
-                                    }
-                                }
-                            }
+                            hasAttacked = combat(game, game.player2, game.player);
                         } else if (input2 == 1) {
                             displayField(game);
                         } else {
@@ -144,6 +89,42 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static boolean combat(Game game, Player player, Player player2) {
+        boolean hasAttacked;
+        player.attack();
+        player2.attack();
+        hasAttacked = true;
+        player.den.stream().sorted();
+        player2.den.stream().sorted();
+        for (int m = 0; m < player.den.size(); m++) {
+            if (player.den.size() == player2.den.size()) {
+                monstersAttack(m, player, player2);
+            } else if (player.den.size() > player2.den.size()) {
+                int tempNum = (player.den.size() - player2.den.size());
+                if (player2.den.size() == 0) {
+                    System.out.println(player.name + "'s monster attacked " + player2.name + " directly!!!");
+                    player2.health--;
+                    tempNum = 0;
+                }
+                moreMonstersAttack(player2, player);
+                while (tempNum > 0) {
+                    System.out.println(player.name + "'s monster attacked " + player2.name + " directly!!!");
+                    player2.health--;
+                    tempNum--;
+                    m = game.player.den.size();
+                }
+            }
+        }
+        return hasAttacked;
+    }
+
+    private static void powerUp(List<Die> dice, Player player) {
+        System.out.println("Power Up");
+        dice.add(new Die());
+        player.powerLevel++;
+        player.mana -= (player.powerLevel - 3);
     }
 
     private static void monstersAttack(int m, Player player, Player player2) {
@@ -188,7 +169,7 @@ public class Main {
         int numberInput = scan.nextInt();
         if ((numberInput >= 3 && numberInput <= 10) && (numberInput <= (player.mana - 3))) {
             player.den.add(new Die(numberInput));
-            player.mana -= (numberInput + 1);
+            player.mana -= (numberInput + 3);
             System.out.println("Monster Added to Den");
             return true;
         }
