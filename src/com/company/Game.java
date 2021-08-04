@@ -2,8 +2,7 @@ package com.company;
 
 import java.util.*;
 
-public class Cup {
-    Map <Integer, Integer> freq = new TreeMap<>();
+public class Game {
     List<Die> dice = new ArrayList<>();
     List<Die> dice2 = new ArrayList<>();
     List<Player> players = new ArrayList<>();
@@ -12,9 +11,7 @@ public class Cup {
     Integer[] dieHolder;
     Player activePlayer = player;
 
-
-
-    public Cup(int numOfDie) {
+    public Game(int numOfDie) {
 
             while(dice.size() < numOfDie) {
                 dice.add(new Die());
@@ -23,8 +20,6 @@ public class Cup {
                 dice2.add(new Die());
             }
         }
-
-
 
     public void roll() {
         if(activePlayer == player){
@@ -38,6 +33,7 @@ public class Cup {
         }
 
     }
+
     public String orderedDisplay(){
         String output = "";
         if(activePlayer == player){
