@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player  {
     String name = "";
-    int mana = 0;
+    int mana = 5;
     int health = 5;
     int powerLevel = 6;
     List<Die> den = new ArrayList<>();

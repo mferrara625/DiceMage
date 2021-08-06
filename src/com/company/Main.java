@@ -122,9 +122,16 @@ public class Main {
             } else if (player.den.size() > player2.den.size()) {
                 int tempNum = (player.den.size() - player2.den.size());
                 if (player2.den.size() == 0) {
-                    System.out.println(player.name + "'s monster attacked " + player2.name + " directly!!!");
-                    player2.health--;
-                    tempNum = 0;
+                    int randNum = (int) ((Math.random() * 3) + 1);
+                    if (randNum == 1){
+                        System.out.println(player2.name + " dodged " + player.name + "'s monsters attack!");
+                        break;
+                    }
+                    else{
+                        System.out.println(player.name + "'s monster attacked " + player2.name + " directly!!!");
+                        player2.health--;
+                        tempNum = 0;
+                    }
                 }
                 moreMonstersAttack(player2, player);
                 while (tempNum > 0) {
