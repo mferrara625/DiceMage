@@ -134,7 +134,7 @@ public class Main {
                     }
                 }
                 moreMonstersAttack(player2, player);
-                while (tempNum > 0) {
+                while (tempNum > 0 && player2.den.size() != 0) {
                     System.out.println(player.name + "'s monster attacked " + player2.name + " directly!!!");
                     player2.health--;
                     tempNum--;
