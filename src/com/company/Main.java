@@ -37,7 +37,7 @@ public class Main {
                     hasAttacked = false;
                     beginTurn(game, game.player);
                     while (input2 != 5) {
-                        displayActions(hasAttacked, game.player);
+                        displayActions(hasAttacked, game.player, game.player2);
                         input2 = scan.nextInt();
                         if (input2 == 5) {
                             input2 = 0;
@@ -71,7 +71,7 @@ public class Main {
                     hasAttacked = false;
                     beginTurn(game, game.player2);
                     while (input2 != 5) {
-                        displayActions(hasAttacked, game.player2);
+                        displayActions(hasAttacked, game.player2, game.player);
                         input2 = scan.nextInt();
                         if (input2 == 5) {
                             input2 = 0;
@@ -201,11 +201,11 @@ public class Main {
         return false;
     }
 
-    private static void displayActions(boolean hasAttacked, Player player) {
+    private static void displayActions(boolean hasAttacked, Player player, Player player2) {
         System.out.println(player);
         System.out.println("Monsters : " + player.den.size());
         System.out.println("(1) to view field");
-        if (player.den.size() > 0 && !hasAttacked)
+        if (player.den.size() > 0 && !hasAttacked && player.den.size() >= player2.den.size())
             System.out.println("(2) to attack");
         if (player.mana >= 6) {
             System.out.println("(3) to summon a monster (and end turn)");
