@@ -12,7 +12,37 @@ public class Main {
         game.players.add(game.player2);
         int input2 = 0;
         boolean isGameActive = true;
-        System.out.println("Press Enter To Start Game");
+        System.out.println("\n\t########################################");
+        System.out.println("\t######### WELCOME TO DICE MAGE #########");
+        System.out.println("\t########################################");
+
+        System.out.println(" \n" +
+                "                             /\\\n" +
+                "                            /  \\\n" +
+                "                           |    |\n" +
+                "                         --:'''':--\n" +
+                "                           :'_' :\n" +
+                "                           _:\"\":\\___\n" +
+                "            ' '      ____.' :::     '._\n" +
+                "           . *=====<<=)           \\    :\n" +
+                "            .  '      '-'-'\\_      /'._.'\n" +
+                "                             \\====:_ \"\"\n" +
+                "                            .'     \\\\\n" +
+                "            ・*。            :       :\n" +
+                "                          /   :    \\\n" +
+                "          ・゜+.           :   .      '.\n" +
+                "         ,. _             :  : :      :\n" +
+                "     ('      ・*。         :__:-:__.;--'\n" +
+                "   _     °。+ *´¨)        '-'   '-'\n" +
+                " /\\' .\\    _____\n" +
+                "/: \\___\\  / .  /\\\n" +
+                "\\' / . / /____/..\\\n" +
+                " \\/___/  \\'  '\\  /\n" +
+                "          \\'__'\\/");
+        System.out.println("\n\t#########################################");
+        System.out.println("\t####### Press Enter To Start Game #######");
+        System.out.println("\t#########################################");
+
         playDiceMage(scan, game, input2, isGameActive);
     }
 
@@ -43,17 +73,20 @@ public class Main {
                             input2 = 0;
                             break;
                         } else if (input2 == 4) {
+                            if(game.player.mana >= (game.player.powerLevel - 2))
                             powerUp (game.dice, game.player);
                         } else if (input2 == 3) {
-                            if (addMonster(scan, game.player)) break;
+                            if (game.player.mana >= 6){
+                                if (addMonster(scan, game.player)) break;
+                            }
                         } else if (input2 == 2) {
+                            if(!hasAttacked)
                             hasAttacked = combat(game, game.player, game.player2);
                         } else if (input2 == 1) {
                             displayField(game);
                         } else if (input2 == 6) {
+                            if(game.player.health < 3)
                             healCondition(game.dice, game.player);
-                        } else {
-                            break;
                         }
                     }
                 }
@@ -77,17 +110,20 @@ public class Main {
                             input2 = 0;
                             break;
                         } else if (input2 == 4) {
+                            if(game.player2.mana >= (game.player2.powerLevel - 2))
                             powerUp(game.dice2, game.player2);
                         } else if (input2 == 3) {
-                            if (addMonster(scan, game.player2)) break;
+                            if (game.player2.mana >= 6){
+                                if (addMonster(scan, game.player2)) break;
+                            }
                         } else if (input2 == 2) {
+                            if(!hasAttacked)
                             hasAttacked = combat(game, game.player2, game.player);
                         } else if (input2 == 1) {
                             displayField(game);
                         } else if (input2 == 6) {
+                            if(game.player2.health < 3)
                             healCondition(game.dice2, game.player2);
-                        } else {
-                            break;
                         }
                     }
                 }
@@ -138,7 +174,7 @@ public class Main {
                     System.out.println(player.name + "'s monster attacked " + player2.name + " directly!!!");
                     player2.health--;
                     tempNum--;
-                    m = game.player.den.size();
+                    m = player.den.size();
                 }
             }
         }

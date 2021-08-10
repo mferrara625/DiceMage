@@ -11,6 +11,69 @@ public class Game {
     Integer[] dieHolder;
     Player activePlayer = player;
 
+    String[] output;
+    public final String[] ONE_FACE = new String[]{
+            "  ________    ",
+            "|\\  o    o \\  ",
+            "|o\\ ________\\ ",
+            "| o|         |",
+            "'o |    o    |",
+            " \\o|         |",
+            "   '---------'",
+            "       (1)    "
+    };
+    public final String[] TWO_FACE = new String[]{
+            "  ________    ",
+            "|\\    o    \\  ",
+            "|o\\ ________\\ ",
+            "| o| o       |",
+            "'o |         |",
+            " \\o|       o |",
+            "   '---------'",
+            "       (2)    "
+    };
+    public final String[] THREE_FACE = new String[]{
+            "  ________    ",
+            "|\\    o    \\  ",
+            "|o\\ ________\\ ",
+            "|  | o       |",
+            "' o|    o    |",
+            " \\ |       o |",
+            "   '---------'",
+            "       (3)    "
+    };
+    public final String[] FOUR_FACE = new String[]{
+            "  ________    ",
+            "|\\    o    \\  ",
+            "|o\\ ________\\ ",
+            "|  | o     o |",
+            "' o|         |",
+            " \\ | o     o |",
+            "   '---------'",
+            "       (4)    "
+    };
+    public final String[] FIVE_FACE = new String[]{
+            "  ________    ",
+            "|\\    o    \\  ",
+            "|o\\ ________\\ ",
+            "| o| o     o |",
+            "'o |    o    |",
+            " \\o| o     o |",
+            "   '---------'",
+            "       (5)    "
+    };
+    public final String[] SIX_FACE = new String[]{
+            "  ________    ",
+            "|\\  o    o \\  ",
+            "|o\\ ________\\ ",
+            "| o| o     o |",
+            "'o | o     o |",
+            " \\o| o     o |",
+            "   '---------'",
+            "       (6)    "
+    };
+
+
     public Game(int numOfDie) {
 
             while(dice.size() < numOfDie) {
@@ -44,8 +107,12 @@ public class Game {
             }
             Arrays.sort(dieHolder);
 
-            for(Integer num : dieHolder)
-                output += num + " ";
+            for(Integer num : dieHolder){
+                setDice(num);
+                for(int a = 0; a < 8; a++){
+                    System.out.println(this.output[a]);
+                }
+            }
 
         } else if (activePlayer == player2){
 
@@ -55,9 +122,12 @@ public class Game {
             }
             Arrays.sort(dieHolder);
 
-            for(Integer num : dieHolder)
-                output += num + " ";
-
+            for (Integer num : dieHolder) {
+                setDice(num);
+                for (int a = 0; a < 8; a++) {
+                    System.out.println(this.output[a]);
+                }
+            }
         }
         return output;
     }
@@ -79,5 +149,27 @@ public class Game {
             System.out.println("Total Mana: " + player2.mana);
         }
 
+    }
+
+    public void setDice(Integer num){
+
+        if(num == 1){
+            output =  ONE_FACE;
+        }
+        if(num == 2){
+            output =  TWO_FACE;
+        }
+        if(num == 3){
+            output =  THREE_FACE;
+        }
+        if(num == 4){
+            output =  FOUR_FACE;
+        }
+        if(num == 5){
+            output =  FIVE_FACE;
+        }
+        if(num == 6){
+            output =  SIX_FACE;
+        }
     }
 }
