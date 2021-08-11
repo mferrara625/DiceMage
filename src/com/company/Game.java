@@ -141,12 +141,12 @@ public class Game {
         }
         if(activePlayer == player){
             player.mana += manaPulled;
-            System.out.println("Mana Pulled: " + manaPulled);
-            System.out.println("Total Mana: " + player.mana);
+            System.out.println(player.name + " pulled " + manaPulled + " mana");
+            System.out.println("\nTotal Mana: " + player.mana);
         } else if (activePlayer == player2){
             player2.mana += manaPulled;
-            System.out.println("Mana Pulled: " + manaPulled);
-            System.out.println("Total Mana: " + player2.mana);
+            System.out.println(player2.name + " pulled " + manaPulled + " mana");
+            System.out.println("\nTotal Mana: " + player2.mana);
         }
 
     }
